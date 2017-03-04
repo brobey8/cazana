@@ -16,6 +16,7 @@ class Vehicle
     protected $make = null;
     protected $model = null;
     protected $first_registration_date = null;
+    protected $events = [];
 
     public function setId($id) {
         $this->id = $id;
@@ -35,6 +36,10 @@ class Vehicle
 
     public function setFirstRegistrationDate($first_registration_date) {
         $this->first_registration_date = $first_registration_date;
+    }
+
+    public function addEvent(Event $event) {
+        array_push($this->events, $event);
     }
 
 
