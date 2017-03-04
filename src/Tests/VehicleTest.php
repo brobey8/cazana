@@ -7,6 +7,8 @@ class VehicleTest extends TestCase
         $vehicle = new Cazana\Vehicle();
     }
 
+
+
 }
 ?>
 
