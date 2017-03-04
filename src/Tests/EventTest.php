@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class VehicleTest extends TestCase
+class EventTest extends TestCase
 {
     public function testNamespacing() {
         $event = new Cazana\Event();
