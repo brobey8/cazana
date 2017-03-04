@@ -66,5 +66,17 @@ class Event
         return $this->id;
     }
 
+    public function getDate() {
+        return $this->date;
+    }
+
+    public function getMilage() {
+        return $this->mileage;
+    }
+
+    public function getEventType() {
+        return $this->event_type;
+    }
+
 
 }

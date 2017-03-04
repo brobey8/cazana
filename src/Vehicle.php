@@ -63,4 +63,25 @@ class Vehicle
         return $this->first_registration_date;
     }
 
+    public function calculateAverageMilage() {
+        //calculate the average annual milage based off the last event that we have
+        $lastEvent = null;
+        foreach($this->events as $event) {
+            //we only need to look at these two event types, as the others do not store milage info
+            if(in_array($event->getEventType(), ['ADVERTISED_FOR_SALE', 'MOT_TEST'])) {
+                if($lastEvent == null || ($event->getDate() > $lastEvent->getDate())) {
+                    $lastEvent = $event;
+                }
+            }
+        }
+        if($lastEvent == null) {
+            $average = 7900;
+        }
+        else {
+            //return the last milage divided by the age of the car (at that time)
+            $average = $lastEvent->getMilage() / ($lastEvent->getDate()->format('Y') - $this->first_registration_date->format('Y'));
+        }
+        return $average;
+    }
+
 }
