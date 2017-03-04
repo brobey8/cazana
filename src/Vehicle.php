@@ -63,7 +63,14 @@ class Vehicle
         return $this->first_registration_date;
     }
 
+    public function getEvents() {
+        return $this->events;
+    }
+
     public function calculateAverageMilage() {
+        if($this->first_registration_date == null) {
+            throw new \Exception('No first registation date set, cannot calculate');
+        }
         //calculate the average annual milage based off the last event that we have
         $lastEvent = null;
         foreach($this->events as $event) {
@@ -82,6 +89,12 @@ class Vehicle
             $average = $lastEvent->getMilage() / ($lastEvent->getDate()->format('Y') - $this->first_registration_date->format('Y'));
         }
         return $average;
+    }
+
+    public function calculateCurrentMilage() {
+        $current = new \DateTime();
+
+        return $this->calculateAverageMilage() * ($current->format('Y') - $this->first_registration_date->format('Y'));
     }
 
 }
